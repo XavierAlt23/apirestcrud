@@ -1,0 +1,183 @@
+{
+  "info": {
+    "name": "Cafetería Universitaria API",
+    "description": "Colección de pruebas para la API REST CRUD de la Cafetería Universitaria",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "http://localhost:8000/api"
+    }
+  ],
+  "item": [
+    {
+      "name": "Productos",
+      "item": [
+        {
+          "name": "GET - Listar todos los productos",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/productos/"
+          }
+        },
+        {
+          "name": "GET - Buscar producto por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/productos/1"
+          }
+        },
+        {
+          "name": "GET - Filtrar por categoría",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/productos/?categoria=Bebidas Calientes"
+          }
+        },
+        {
+          "name": "GET - Buscar por nombre",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/productos/?buscar=café"
+          }
+        },
+        {
+          "name": "POST - Crear producto",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/productos/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Mocha Especial\",\n  \"descripcion\": \"Espresso con chocolate y crema batida\",\n  \"precio\": 3.25,\n  \"stock\": 50,\n  \"categoria\": \"Bebidas Calientes\",\n  \"imagen_url\": \"\"\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT - Actualizar producto",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/productos/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"precio\": 1.75,\n  \"stock\": 120\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE - Eliminar producto",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/productos/13"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Pedidos",
+      "item": [
+        {
+          "name": "GET - Listar todos los pedidos",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/pedidos/"
+          }
+        },
+        {
+          "name": "GET - Buscar pedido por ID",
+          "request": {
+            "method": "GET",
+            "url": "{{base_url}}/pedidos/1"
+          }
+        },
+        {
+          "name": "POST - Crear pedido",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/pedidos/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cliente\": \"Juan Pérez\",\n  \"detalles\": [\n    {\"producto_id\": 1, \"cantidad\": 2},\n    {\"producto_id\": 7, \"cantidad\": 1}\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "POST - Crear pedido (error: stock insuficiente)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/pedidos/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cliente\": \"Test\",\n  \"detalles\": [\n    {\"producto_id\": 1, \"cantidad\": 9999}\n  ]\n}"
+            }
+          }
+        },
+        {
+          "name": "POST - Crear pedido (error: sin productos)",
+          "request": {
+            "method": "POST",
+            "url": "{{base_url}}/pedidos/",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"cliente\": \"Test\",\n  \"detalles\": []\n}"
+            }
+          }
+        },
+        {
+          "name": "PUT - Actualizar estado del pedido",
+          "request": {
+            "method": "PUT",
+            "url": "{{base_url}}/pedidos/1",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"estado\": \"preparando\"\n}"
+            }
+          }
+        },
+        {
+          "name": "DELETE - Eliminar pedido",
+          "request": {
+            "method": "DELETE",
+            "url": "{{base_url}}/pedidos/1"
+          }
+        }
+      ]
+    }
+  ]
+}
