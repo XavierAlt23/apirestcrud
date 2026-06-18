@@ -66,6 +66,17 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 > El servidor estará disponible en **http://localhost:8000**
 > Documentación Swagger en **http://localhost:8000/docs**
 
+> **Nota:** El backend (Terminal 1) debe estar corriendo antes de lanzar la app Flutter.
+
+
+>Configuración de IP según dispositivo
+>Dispositivo | IP en `api_service.dart` |
+>|---|---|
+>| Emulador Android | `10.0.2.2` (automático) |
+>| Web / Desktop | `localhost` (automático) |
+>| Dispositivo físico | Tu IP local (ej: `192.168.1.x`) |
+>Si usas un dispositivo físico, edita `lib/services/api_service.dart` y cambia la IP.
+
 ### Terminal 2 — Flutter (App Móvil)
 
 ```bash
@@ -79,17 +90,7 @@ flutter pub get
 flutter run
 ```
 
-> **Nota:** El backend (Terminal 1) debe estar corriendo antes de lanzar la app Flutter.
 
-### Configuración de IP según dispositivo
-
-| Dispositivo | IP en `api_service.dart` |
-|---|---|
-| Emulador Android | `10.0.2.2` (automático) |
-| Web / Desktop | `localhost` (automático) |
-| Dispositivo físico | Tu IP local (ej: `192.168.1.x`) |
-
-Si usas un dispositivo físico, edita `lib/services/api_service.dart` y cambia la IP.
 
 ## Endpoints API
 
