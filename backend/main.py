@@ -117,7 +117,7 @@ def seed_data():
             ]
             db.add_all(productos_seed)
             db.commit()
-            print("✅ Datos de ejemplo insertados correctamente")
+            print("[OK] Datos de ejemplo insertados correctamente")
     finally:
         db.close()
 
@@ -127,9 +127,9 @@ async def lifespan(app: FastAPI):
     """Application lifespan: create tables and seed data on startup."""
     Base.metadata.create_all(bind=engine)
     seed_data()
-    print("🚀 Cafetería Universitaria API iniciada")
+    print("[START] Cafeteria Universitaria API iniciada")
     yield
-    print("👋 API detenida")
+    print("[STOP] API detenida")
 
 
 app = FastAPI(

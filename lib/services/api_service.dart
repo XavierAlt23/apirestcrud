@@ -11,7 +11,7 @@ class ApiService {
   /// - Web / Desktop / iOS simulator: localhost
   /// - Physical device: change to your computer's IP (e.g. 192.168.x.x)
   static String get _host {
-    return '192.168.100.16';
+    return '10.40.57.241';
   }
 
   static String get baseUrl => 'http://$_host:8000/api';

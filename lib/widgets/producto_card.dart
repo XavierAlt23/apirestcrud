@@ -80,28 +80,30 @@ class ProductoCard extends StatelessWidget {
               Expanded(
                 flex: 2,
                 child: Padding(
-                  padding: const EdgeInsets.all(12),
+                  padding: const EdgeInsets.fromLTRB(10, 8, 10, 10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Category chip
                       Container(
                         padding: const EdgeInsets.symmetric(
-                          horizontal: 8,
+                          horizontal: 7,
                           vertical: 2,
                         ),
                         decoration: BoxDecoration(
                           color: _getCategoryColor(producto.categoria)
                               .withOpacity(0.15),
-                          borderRadius: BorderRadius.circular(8),
+                          borderRadius: BorderRadius.circular(6),
                         ),
                         child: Text(
                           producto.categoria,
                           style: TextStyle(
-                            fontSize: 10,
+                            fontSize: 9,
                             fontWeight: FontWeight.w600,
                             color: _getCategoryColor(producto.categoria),
                           ),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                       const SizedBox(height: 4),
@@ -111,47 +113,51 @@ class ProductoCard extends StatelessWidget {
                         producto.nombre,
                         style: theme.textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.bold,
+                          fontSize: 13,
                         ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
                       const Spacer(),
 
-                      // Price and stock row
+                      // Price and cart button row
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
-                            '\$${producto.precio.toStringAsFixed(2)}',
-                            style: theme.textTheme.titleMedium?.copyWith(
-                              fontWeight: FontWeight.w800,
-                              color: theme.colorScheme.primary,
+                          Flexible(
+                            child: Text(
+                              '\$${producto.precio.toStringAsFixed(2)}',
+                              style: theme.textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.w800,
+                                color: theme.colorScheme.primary,
+                              ),
+                              overflow: TextOverflow.ellipsis,
                             ),
                           ),
                           if (onAddToCart != null)
                             InkWell(
                               onTap: producto.stock > 0 ? onAddToCart : null,
-                              borderRadius: BorderRadius.circular(12),
+                              borderRadius: BorderRadius.circular(10),
                               child: Container(
                                 padding: const EdgeInsets.all(6),
                                 decoration: BoxDecoration(
                                   color: producto.stock > 0
                                       ? theme.colorScheme.primary
                                       : Colors.grey,
-                                  borderRadius: BorderRadius.circular(12),
+                                  borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: Icon(
+                                child: const Icon(
                                   Icons.add_shopping_cart_rounded,
                                   color: Colors.white,
-                                  size: 18,
+                                  size: 16,
                                 ),
                               ),
                             ),
                         ],
                       ),
+                      const SizedBox(height: 4),
 
                       // Stock indicator
-                      const SizedBox(height: 4),
                       Text(
                         producto.stock > 0
                             ? 'Stock: ${producto.stock}'

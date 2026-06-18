@@ -46,6 +46,25 @@ pry_apicrud/
 
 ### Terminal 1 — Backend (FastAPI)
 
+**Windows (PowerShell):**
+```powershell
+# 1. Ir al directorio del backend
+cd backend
+
+# 2. Crear entorno virtual
+python -m venv venv
+
+# 3. Activar entorno virtual
+.\venv\Scripts\Activate.ps1
+
+# 4. Instalar dependencias
+pip install -r requirements.txt
+
+# 5. Ejecutar el servidor API
+python -m uvicorn main:app --reload --host 0.0.0.0 --port 8000
+```
+
+**Linux / macOS:**
 ```bash
 # 1. Ir al directorio del backend
 cd backend
@@ -68,20 +87,22 @@ uvicorn main:app --reload --host 0.0.0.0 --port 8000
 
 > **Nota:** El backend (Terminal 1) debe estar corriendo antes de lanzar la app Flutter.
 
+> **Windows:** Si PowerShell bloquea la ejecución de scripts, ejecuta primero:
+> `Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope CurrentUser`
 
->Configuración de IP según dispositivo
->Dispositivo | IP en `api_service.dart` |
->|---|---|
->| Emulador Android | `10.0.2.2` (automático) |
->| Web / Desktop | `localhost` (automático) |
->| Dispositivo físico | Tu IP local (ej: `192.168.1.x`) |
->Si usas un dispositivo físico, edita `lib/services/api_service.dart` y cambia la IP.
+| Dispositivo | IP en `api_service.dart` |
+|---|---|
+| Emulador Android | `10.0.2.2` (automático) |
+| Web / Desktop | `localhost` (automático) |
+| Dispositivo físico | Tu IP local (ej: `192.168.1.x`) |
+
+> Si usas un dispositivo físico, edita `lib/services/api_service.dart` y cambia la IP.
 
 ### Terminal 2 — Flutter (App Móvil)
 
 ```bash
-# 1. Ir al directorio raíz del proyecto
-cd /home/xavo/GitHub/Institucional/pry_apicrud
+# 1. Ir al directorio raíz del proyecto (ajusta según tu ruta)
+cd apirestcrud
 
 # 2. Instalar dependencias
 flutter pub get
